@@ -25,7 +25,7 @@ const Cell = ({ number, isBlackHole, isStarGate, players }) => {
 
       <div className="flex space-x-1 z-10">
         {players.map((player) => (
-          <img key={player.id} src="/player.webp" />
+          <img key={player.id} src="/player.webp" className="" />
         ))}
       </div>
     </div>

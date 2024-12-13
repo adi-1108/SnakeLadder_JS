@@ -7,9 +7,9 @@ import { blackHoles, starGates } from "../../constants";
 const Board = () => {
   const gridBg = [
     "/new/grid-boxv1.webp",
-    "/new/grid-boxv2.webp",
-    "/new/grid-boxv3.webp",
-    "/new/grid-boxv4.webp",
+    // "/new/grid-boxv2.webp",
+    // "/new/grid-boxv3.webp",
+    // "/new/grid-boxv4.webp",
   ];
 
   const [players, setPlayers] = useState([
