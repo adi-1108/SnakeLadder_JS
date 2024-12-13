@@ -13,8 +13,8 @@ const Board = () => {
   ];
 
   const [players, setPlayers] = useState([
-    { id: 1, position: 1 }, // Player 1 starts at cell 1
-    { id: 2, position: 1 }, // Player 2 starts at cell 1
+    { id: 1, position: 1, image: "/player1.webp" }, // Player 1 starts at cell 1
+    { id: 2, position: 1, image: "/player2.webp" }, // Player 2 starts at cell 1
   ]);
   const [currentPlayer, setCurrentPlayer] = useState(0); // Track whose turn it is
 
@@ -60,6 +60,9 @@ const Board = () => {
     return cells;
   };
 
+
+  
+
   const movePlayer = () => {
     const diceValue = rollDice();
     const updatedPlayer = [...players];
@@ -85,7 +88,13 @@ const Board = () => {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-2xl text-white font-bold mb-4">Space Portal</h1>
-      <div className="grid grid-cols-10 grid-rows-10 gap-1 backdrop-blur-lg aspect-square w-[75vw] h-[calc(100vh-100px)]">
+      {currentPlayer === 0 && (
+        <h1 className="text-white font-bold">Player 1 turn</h1>
+      )}
+      {currentPlayer === 1 && (
+        <h1 className="text-white font-bold">Player 2 turn</h1>
+      )}
+      <div className="grid grid-cols-10 sm:gap-1 w-[75vw] h-[calc(100vh-200px)] gap-0 sm:h-[calc(100vh-100px)]">
         {createGrid()}
       </div>
       <Dice rollDice={movePlayer} />
