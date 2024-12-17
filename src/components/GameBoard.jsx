@@ -58,7 +58,7 @@ const GameBoard = () => {
             id={cellNumber}
             key={cellNumber}
             className={clsx(
-              "flex items-center justify-center text-[2vw] font-bold aspect-w-1 bg-contain bg-no-repeat"
+              "flex items-center justify-center text-[2vw] font-bold  bg-contain bg-no-repeat"
             )}
           >
             <img
@@ -114,7 +114,7 @@ const GameBoard = () => {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-2xl text-white font-bold mb-4">Space Portal</h1>
-      <div className="grid grid-cols-10 grid-rows-10 gap-1 backdrop-blur-lg aspect-square w-[75vw] h-[calc(100vh-100px)]">
+      <div className="grid grid-cols-10 grid-rows-10 gap-1 backdrop-blur-lg  w-[75vw] h-[calc(100vh-100px)]">
         {createGrid()}
       </div>
       <Dice currentPlayer={currentPlayer} onRoll={rollDice} />
