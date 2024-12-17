@@ -1,8 +1,8 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { gridBg, starGates } from "./../../constants";
 
-const Cell = ({ number, isBlackHole, isStarGate, players }) => {
+const Cell = ({ number, isBlackHole, isStarGate, players, isCurrentCell }) => {
   const randomBg = gridBg[Math.floor(Math.random() * gridBg.length)];
 
   return (
@@ -13,21 +13,30 @@ const Cell = ({ number, isBlackHole, isStarGate, players }) => {
         alt=""
       />
       {isStarGate && (
-        <img
+        <motion.img
           src="/new/star-gate.webp"
           className="absolute w-full h-full top-0 left-0 object-cover z-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         />
       )}
       {isBlackHole && (
-        <img
+        <motion.img
           src="/new/blackhole.webp"
           className="absolute w-full h-full top-0 left-0 object-cover z-0"
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 300 }}
         />
       )}
       {Object.values(starGates).includes(number) && (
-        <img
+        <motion.img
           src="/new/star-gate-exit.webp"
           className="absolute w-full h-full top-0 left-0 object-cover z-0"
+          initial={{ rotate: -180, opacity: 0 }}
+          animate={{ rotate: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 120 }}
         />
       )}
       {!isBlackHole && !isStarGate && (
@@ -37,28 +46,39 @@ const Cell = ({ number, isBlackHole, isStarGate, players }) => {
       )}
 
       {/* Players */}
-      <div className="flex space-x-1 z-10">
+      <AnimatePresence>
         {players.map((player) => (
           <motion.img
             key={player.id}
             src={player.image}
             className="absolute w-[75%] h-full top-0 left-0 object-cover z-50"
-            animate={{
-              x: player.position.x,
-              y: player.position.y,
-            }}
             initial={{
+              opacity: 0,
+              scale: 0.5,
+              x: "-50%",
+              y: "-50%",
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
               x: 0,
               y: 0,
+            }}
+            exit={{
+              opacity: 0,
+              scale: 0.5,
+              transition: { duration: 0.3 },
             }}
             transition={{
               type: "spring",
               stiffness: 300,
-              damping: 30,
+              damping: 20,
             }}
           />
         ))}
-      </div>
+      </AnimatePresence>
+
+      
     </div>
   );
 };
