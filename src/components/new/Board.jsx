@@ -10,7 +10,7 @@ const Board = () => {
   const gridBg = ["/new/grid-boxv1.webp"];
 
   const [players, setPlayers] = useState([
-    { id: 1, position: 1, image: "/player1.webp" },
+    { id: 1, position: 99, image: "/player1.webp" },
     { id: 2, position: 1, image: "/player2.webp" },
   ]);
   const [currentPlayer, setCurrentPlayer] = useState(0);
@@ -100,6 +100,8 @@ const Board = () => {
   const playersOnCell = players.filter((player) => player.position === 100);
 
   let isWinner = playersOnCell[0]?.position === 100;
+  // console.log(playersOnCell[0].id);
+  console.log(isWinner);
 
   return (
     <div className="flex flex-col items-center">
@@ -142,7 +144,7 @@ const Board = () => {
           onClose={() => setIsModalOpen(false)}
         >
           <div>
-            {currentPlayer === 0 ? "Player 1" : "Player 2"} is the Winner
+            {playersOnCell[0].id === 1 ? "Player 1" : "Player 2"} is the Winner
           </div>
         </Modal>
       )}
